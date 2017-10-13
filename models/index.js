@@ -8,7 +8,7 @@ const cart = require('./cart');
 //configure dotenv for reading .env properties
 require('dotenv').config();
 
-// connect to Mongo DB
+// connect to Mongoose/Mongo DB
 mongoose.connection.openUri(process.env.MONGODB_URI ||process.env.DB_CONN, {}, (err, conn) => {
 	if (err) { 	console.log('Error connecting to Mongo DB.', err); }
 	else 	 {	console.log('Mongoose successfully connected to Mongo DB.'); }
