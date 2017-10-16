@@ -16,7 +16,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index.js');
 
-app.use('/', index);
+// gets login page
+app.get('/', function(req, res) {
+  res.render('login')
+});
+// gets admin page
+app.get('/admin', function(req, res) {
+  res.render('admin')
+});
+// gets homepage
+app.get('/storefront', function(req, res) {
+  res.render('storefront')
+});
 
 
 
