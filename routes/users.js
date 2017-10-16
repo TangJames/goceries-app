@@ -41,7 +41,7 @@ function deleteUser(req, res) {
 module.exports = {
 	selectAllUsers : selectAllUsers,
 	selectUser : selectUser,
-	insertUser : insertUser,
+	createUser : createUser,
 	updateUser : updateUser,
 	deleteUser : deleteUser
 };

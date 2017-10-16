@@ -1,4 +1,4 @@
-const DB = require('../models');
+const DB = require('../models/index');
 
 //Selects one item by parameter id from specified DB.Item
 function selectItem(req, res) {
@@ -17,6 +17,7 @@ function selectAllItems(req, res) {
 
 //Creates a simple item. create item into the specified DB.Item
 function createItem(req, res) {
+    console.log(req.body);
 	(new DB.Item(req.body)).save((err, newItem) => {
 		res.json(newItem);
 	});
@@ -41,7 +42,7 @@ function deleteItem(req, res) {
 module.exports = {
 	selectAllItems : selectAllItems,
 	selectItem : selectItem,
-	insertItem : insertItem,
+	createItem : createItem,
 	updateItem : updateItem,
 	deleteItem : deleteItem
 };
