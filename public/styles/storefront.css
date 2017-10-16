@@ -1,0 +1,41 @@
+
+
+div.products {
+
+}
+
+div#select-products {
+	display: flex;
+
+}
+
+div#select-products div {
+	border: 1px solid silver;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	width: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+div#select-products div p {
+	padding: 0px;
+}
+
+.product-name {
+	font-weight: bold;
+	font-size: 14px;
+
+	color: darkred;
+}
+
+.product-price {
+
+	color: darkgreen;
+}
+
+.product-tags {
+	font-style: italic;
+	color: silver;
+}
