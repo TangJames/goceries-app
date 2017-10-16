@@ -24,7 +24,7 @@ function createItem(req, res) {
 
 //Updates one item by parameter id from specified DB.Item
 function updateItem(req, res) {
-	DB.Item.update({_id: req.params.id}, {$set: req.body}, {new:true}, (err, uItem) => {
+	DB.Item.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, {new:true}, (err, uItem) => {
 		if (err) { return console.log("index error: " + err); }
 		res.json(uItem);
 	});

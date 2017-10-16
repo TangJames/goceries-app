@@ -79,20 +79,28 @@ $(function() {
     });
 
 
+    // doesnt work
 
-
-    function updateItemById(id) {
+    function updateItemById() {
+        let id = '59e5231e5305602b4d4d38d7';
         $.ajax({
             method: 'PUT',
             url: `http://localhost:3000/api/items/${id}`,
             dataType: 'json',
-            // success: onUpdateSuccess
+            success: onUpdateSuccess
         });
     }
 
-    $('#submitUpdate').on('click', function(e) {
-        e.preventDefault();
+    function onUpdateSuccess(data) {
+        console.log(data);
+    }
 
+    $('#submitUpdate').on('click', function(e) {
+        // e.preventDefault();
+        let options = {};
+        let updateFormSerialize = $('#updateData').serialize();
+        console.log(updateFormSerialize);
+        updateItemById();
     });
 
 
