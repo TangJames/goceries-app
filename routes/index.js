@@ -13,12 +13,13 @@ const userRoute = require('./users');
 
 router.route('/api/items')
     .get(itemRoute.selectAllItems)
-    .post(itemRoute.createItem)
-    .delete(itemRoute.deleteItem);
+    .post(itemRoute.createItem);
+
 
 router.route('/api/items/:id')
     .get(itemRoute.selectItem)
-    .put(itemRoute.updateItem);
+    .put(itemRoute.updateItem)
+    .delete(itemRoute.deleteItem);
 
 
 

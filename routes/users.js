@@ -20,7 +20,8 @@ function createUser(req, res) {
 	(new DB.User(req.body)).save((err, newItem) => {
 		res.json(newItem);
 	});
-}//end of createUser()a
+}//end of createUser()
+
 
 //Updates one user by parameter id from specified DB.User
 function updateUser(req, res) {
