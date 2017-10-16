@@ -3,18 +3,18 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.send('This will be the homepage');
+  res.render('login');
 });
 
 
 const itemRoute = require('./item');
 const userRoute = require('./users');
+const adminRoute = require('./admin');
 
-
+// Item API Routes
 router.route('/api/items')
     .get(itemRoute.selectAllItems)
     .post(itemRoute.createItem);
-
 
 router.route('/api/items/:id')
     .get(itemRoute.selectItem)
@@ -25,4 +25,65 @@ router.route('/api/items/:id')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Admin Page Routes
+router.route('/admin/home/items')
+    .get(itemRoute.selectAllItems)
+    .post(itemRoute.createItem);
+
+router.route('/admin/home/items/:id')
+    .get(itemRoute.selectItem)
+    .put(itemRoute.updateItem)
+    .delete(itemRoute.deleteItem);
+
+router.route('/admin')
+    .get(adminRoute.renderAdminLogin);
+
+router.route('/admin/home')
+    .get(adminRoute.renderAdminHome);
+
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
