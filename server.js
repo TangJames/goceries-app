@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const index = require('./routes/index.js');
 
 // gets login page
-app.get('/', function(req, res) {
+app.get('/login', function(req, res) {
   res.render('login')
 });
 // gets admin page
