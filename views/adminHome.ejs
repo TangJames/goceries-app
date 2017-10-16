@@ -11,20 +11,24 @@
     <div class="flexbox-container">
         <div>
             <form id="postData" action="">
-            <label for="name">Name: </label>
-            <input type="text" name="name">
-            <label for="price">Price: </label>
-            <input type="text" name="price">
-            <input id="submitPost" type="submit" value="Add Item">
-        </form>
+                <label for="name">Name: </label>
+                <input type="text" name="name">
+                <label for="price">Price: </label>
+                <input type="text" name="price">
+                <input id="submitPost" type="submit" value="ADD ITEM">
+            </form>
+
+            <form id="deleteData" action="">
+                <label for="delete">Delete Item by ID: </label>
+                <input type="text" name="delete">
+                <input id="submitDelete" type="submit" value="DELETE ITEM">
+            </form>
         </div>
         <div>
             <button id="getFirstItem" type="submit" >Get Items</button>
             <div class="itemList"></div>
         </div>
     </div>
-
-
 
 
 
