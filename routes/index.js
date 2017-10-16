@@ -26,7 +26,13 @@ router.route('/api/items/:id')
 
 
 
+router.get('/', (req, res) => {
+    res.render('login');
+});
 
+router.get('storefront', (req, res) => {
+    res.render('storefront');
+});
 
 
 
