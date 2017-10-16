@@ -22,7 +22,6 @@ function createUser(req, res) {
 	});
 }//end of createUser()
 
-
 //Updates one user by parameter id from specified DB.User
 function updateUser(req, res) {
 	DB.User.update({_id: req.params.id}, {$set: req.body}, {new:true}, (err, uItem) => {

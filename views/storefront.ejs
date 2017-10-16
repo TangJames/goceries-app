@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title> Storefront </title>
-  </head>
-  <body>
-    <h1> This is the storefront </h1>
-  </body>
+<head>
+	<meta charset="utf-8">
+	<title> Go-ceries: Storefront </title>
+	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="scripts/storefront.js"></script>
+
+	<link rel="stylesheet" href="styles/storefront.css" media="screen" />
+</head>
+<body>
+	<h1> This is the storefront </h1>
+
+	<header>
+		<nav></nav>
+	</header>
+	<main>
+		<form id="product-form" method="POST" action="">
+			<section class="create-order">
+				<div id="select-category">
+					<h3>Category:</h3>
+				</div>
+				<hr>
+				<div class="products">
+					<h3>Products:</h3>
+					<div id="select-products">
+
+					</div>
+
+					<div id="product-cart">
+						<div class="">
+
+						</div>
+					</div>
+				</div>
+			</section>
+			<input type="submit" value="Submit" />
+		</form>
+
+	</main>
+
+	<footer>
+	</footer>
+</body>
 </html>
