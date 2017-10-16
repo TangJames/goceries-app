@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   res.render('login');
 });
 
-
+const cartRoute = require('./carts');
 const itemRoute = require('./items');
 const userRoute = require('./users');
 const adminRoute = require('./admin');
@@ -23,6 +23,15 @@ router.route('/api/items/:id')
 
 
 
+	// Cart API Routes
+	router.route('/api/carts')
+	    .get(cartRoute.selectAllCarts)
+	    .post(cartRoute.createCart);
+
+	router.route('/api/carts/:id')
+	    .get(cartRoute.selectCart)
+	    .put(cartRoute.updateCart)
+	    .delete(cartRoute.deleteCart);
 
 
 
@@ -33,15 +42,6 @@ router.get('/', (req, res) => {
 router.get('/storefront', (req, res) => {
     res.render('storefront');
 });
-
-
-
-
-
-
-
-
-
 
 
 
@@ -67,29 +67,3 @@ router.route('/admin/home')
     .get(adminRoute.renderAdminHome);
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

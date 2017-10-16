@@ -2,10 +2,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Home Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/styles/adminHomeStyle.css">
 </head>
 <body>
 
-<h1>Admin Home</h1>
 
+    <div class="flexbox-container">
+        <div>
+            <form id="postData" action="">
+                <label for="name">Name: </label>
+                <input type="text" name="name">
+                <label for="price">Price: </label>
+                <input type="text" name="price">
+                <input id="submitPost" type="submit" value="ADD ITEM">
+            </form>
+
+            <form id="deleteData" action="">
+                <label for="delete" class="boldMe">Delete Item by ID: </label>
+                <br>
+                <input type="text" name="delete">
+                <input id="submitDelete" type="submit" value="DELETE ITEM">
+            </form>
+
+            <form action="">
+                <label for="update" class="boldMe">Update Item by ID: </label>
+                <br>
+                <label for="ID">Object ID: </label>
+                <input type="text" name="deleteById">
+                <br>
+                <label for="name">Update Name: </label>
+                <input type="text" name="name">
+                <br>
+                <label for="price">Update Price: </label>
+                <input type="text" name="price">
+                <br>
+                <input type="submit" id="submitUpdate" value="UPDATE ITEM">
+            </form>
+        </div>
+        <div>
+            <button id="getFirstItem" type="submit" >Get Items</button>
+            <div class="itemList"></div>
+        </div>
+    </div>
+
+
+
+
+<script src="/scripts/adminScript.js"></script>
 </body>
 </html>
