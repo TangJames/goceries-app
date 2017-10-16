@@ -19,10 +19,7 @@ const index = require('./routes/index.js');
 app.use('/', index);
 
 
-// gets homepage
-app.get('/storefront', function(req, res) {
-  res.render('storefront');
-});
+
 
 
 
