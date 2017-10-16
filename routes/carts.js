@@ -9,9 +9,11 @@ function selectCart(req, res) {
 
 //Selects all carts from specified DB.Cart
 function selectAllCarts(req, res) {
-	DB.Cart.find((err, users) => { // send all users as JSON response
+	DB.Cart.find()
+	.populate('items')
+	.exec((err, carts) => { // send all users as JSON response
 		if (err) { return console.log("index error: " + err); }
-		res.json(items);
+		res.json(carts);
 	});
 }//end of selectAllCarts()
 

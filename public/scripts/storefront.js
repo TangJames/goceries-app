@@ -9,11 +9,13 @@ var products = [];
 function AjaxRequest(method, url, data, onSuccess) {
 	this.ajaxInfo = {
 		method: method,
-		data: data,
 		url: url,
 		dataType: 'json',
 		success: onSuccess
 	};
+
+	if(data)
+		this.ajaxInfo.data =  data;
 
 	//AjaxRquest method to execute request
 	this.execute = () => {
@@ -69,11 +71,15 @@ var initializeItems = (resp) => {
 	}); // end of forEach
 } // end of initializeItems()
 
+var addCart = (resp) => {
+	console.log(resp);
+}
+
 //main script starting point. executes when document is ready
 $(() => {
 	console.log('Go forth and code!');
 	var mainDomain = 'http://localhost:3000/api';
-	(new AjaxRequest('GET', `${mainDomain}/items`, {}, initializeItems)).execute();
+	(new AjaxRequest('GET', `${mainDomain}/items`, null, initializeItems)).execute();
 	//
 	$('#submit-cart').on('click',function(e){
 	    e.preventDefault();
@@ -86,11 +92,11 @@ $(() => {
 		});
 
 		var newCart = {
-			"items" : items,
-			"itemsQty" : itemsQty
-		}
+			items : items,
+			itemsQty : itemsQty
+		};
 
-		(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, null)).execute();
+		(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, addCart)).execute();
 
 	});
 
