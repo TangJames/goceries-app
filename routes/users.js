@@ -20,7 +20,7 @@ function createUser(req, res) {
 	(new DB.User(req.body)).save((err, newItem) => {
 		res.json(newItem);
 	});
-}//end of createUser()
+}//end of createUser()a
 
 //Updates one user by parameter id from specified DB.User
 function updateUser(req, res) {
@@ -41,7 +41,7 @@ function deleteUser(req, res) {
 module.exports = {
 	selectAllUsers : selectAllUsers,
 	selectUser : selectUser,
-	insertUser : insertUser,
+	createUser : createUser,
 	updateUser : updateUser,
 	deleteUser : deleteUser
 };

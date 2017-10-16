@@ -7,4 +7,21 @@ router.get('/', (req, res) => {
 });
 
 
+const itemRoute = require('./item');
+const userRoute = require('./users');
+
+
+router.route('/api/items')
+    .get(itemRoute.selectAllItems)
+    .post(itemRoute.createItem)
+    .delete(itemRoute.deleteItem);
+
+router.route('/api/items/:id')
+    .get(itemRoute.selectItem)
+    .put(itemRoute.updateItem);
+
+
+
+
+
 module.exports = router;
