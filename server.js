@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extedned: true}));
 const index = require('./routes/index.js');
 
 // gets login page
-app.get('/', function(req, res) {
+app.get('/login', function(req, res) {
   res.render('login')
 });
 // gets admin page
