@@ -41,7 +41,7 @@ function deleteItem(req, res) {
 module.exports = {
 	selectAllItems : selectAllItems,
 	selectItem : selectItem,
-	insertItem : insertItem,
+	createItem : createItem,
 	updateItem : updateItem,
 	deleteItem : deleteItem
 };
