@@ -1,41 +1,79 @@
+body {
+	font-family: 'Oswald', sans-serif;
 
+	background-color: white; /*rgb(120,7,7); blood cherry*/
+	top: 0; left: 0;
+	margin: 0 auto;
+}
 
-div.products {
+div.products, div.cart {
+display: flex;
+flex-direction: column;
+margin-right: 20px;
+border: 1px solid silver;
+padding: 10px 20px;
+}
 
+section.create-order {
+
+	display: flex;
+
+	flex-direction: row;
 }
 
 div#select-products {
 	display: flex;
 
+	flex-direction: row;
+
 }
+div#edit-cart {
+	display: flex;
+
+	flex-direction: column;
+
+}
+
+div#edit-cart .remove {
+	color: darkred;
+}
+
 /* hi */
-div#select-products div {
+div#select-products div  {
 	border: 1px solid silver;
 	border-radius: 5px;
 	margin: 5px;
-	padding: 5px;
+	padding: 10px;
 	width: 100px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
+	height: 100px;
 }
-div#select-products div p {
+div#select-products div p, div#edit-cart p {
 	padding: 0px;
+	margin: 0px;
+
 }
 
 .product-name {
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 18px;
 
 	color: darkred;
 }
 
 .product-price {
 
+	font-size: 16px;
+	align-self: flex-end;
+	order: 1;
 	color: darkgreen;
 }
 
 .product-tags {
+	font-size: 14px;
 	font-style: italic;
 	color: silver;
 }
