@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
     res.render('login');
 });
 
-router.get('storefront', (req, res) => {
+router.get('/storefront', (req, res) => {
     res.render('storefront');
 });
 
