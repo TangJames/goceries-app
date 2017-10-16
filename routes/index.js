@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 
-const itemRoute = require('./item');
+const itemRoute = require('./items');
 const userRoute = require('./users');
 const adminRoute = require('./admin');
 
