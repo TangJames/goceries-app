@@ -12,11 +12,12 @@
 
 <div class="login-page">
   <div class="form">
-    <form class="login-form" method="POST" action="/sessions">
-      <input type="text" placeholder="username" name="email" />
+    <form class="register-form" method="POST" action="/users">
+      <input type="text" placeholder="name"/>
       <input type="password" placeholder="password" name="password"/>
-      <button type="submit">Login</button>
-      <p class="message">Not registered? <a href="/signUp">Create an account</a></p>
+      <input type="text" placeholder="email address" name="email"/>
+      <button type="submit">Sign Up</button>
+      <p class="message">Already registered? <a href="/login">Sign In</a></p>
     </form>
   </div>
 </div>

@@ -7,8 +7,10 @@
 </head>
 <body>
 
-
-    <div class="flexbox-container">
+    <% if (user && user.email) { %>
+            You're logged in as <%= user.email %>!</h2>
+            <a href="/logout" class="btn btn-default">Log Out</a>
+            <div class="flexbox-container">
         <div>
             <form id="postData" action="">
                 <label for="name">Name: </label>
@@ -45,6 +47,12 @@
             <div class="itemList"></div>
         </div>
     </div>
+          <% } else { %>
+            You're not logged in. </h2>
+            <a href="/login">Log in</a>
+          <% } %>
+
+
 
 
 

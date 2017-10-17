@@ -1,48 +1,79 @@
-const DB = require('../models');
+const User = require('../models/user');
 
-//Selects one user by parameter id from specified DB.User
-function selectUser(req, res) {
-	DB.User.findOne({_id: req.params.id}, (err, fUser) => {
-		res.json(fUser);
-	});
-}//end of selectUser()
 
-//Selects all users from specified DB.User
-function selectAllUsers(req, res) {
-	DB.User.find((err, users) => { // send all users as JSON response
-		if (err) { return console.log("index error: " + err); }
-		res.json(users);
-	});
-}//end of selectAllUsers()
 
-//Creates a simple user. create user into the specified DB.User
-function createUser(req, res) {
-	(new DB.User(req.body)).save((err, newUser) => {
-		res.json(newUser);
-	});
-}//end of createUser()
+// function getHomePage(req, res) {
+//   User.find({}, function(err, currentUser) {
+//     res.render('index', {
+//       users: currentUser
+//     });
+//   });
+// }
 
-//Updates one user by parameter id from specified DB.User
-function updateUser(req, res) {
-	DB.User.update({_id: req.params.id}, {$set: req.body}, {new:true}, (err, uUser) => {
-		if (err) { return console.log("index error: " + err); }
-		res.json(uUser);
-	});
-}//end of updateUser()
 
-//Deletes one user by parameter id from specified DB.User
-function deleteUser(req, res) {
-	DB.User.findOneAndRemove({ _id: req.params.id }).exec((err, dUser) => {
-		res.json(dUser);
-	});
-}//end of deleteUser()
+function getSignupPage(req, res) {
+  res.render('adminSignup');
+}
 
-//exporting common, simple CRUD methods for use by other routes
+function getLoginPage(req, res) {
+  res.render('admin');
+}
+
+function getLogoutPage(req, res) {
+
+  req.session.userId = null;
+
+  res.redirect('/admin');
+}
+
+
+// function getProfilePage(req, res) {
+//   User.findOne({
+//     _id: req.session.userId
+//   }, function(err, currentUser) {
+//     res.render('adminHome', {
+//       user: currentUser
+//     });
+//   });
+// }
+
+function getProfilePage(req, res) {
+    res.render('adminHome');
+}
+
+
+function registerNewUser(req, res) {
+  User.createSecure(req.body.email, req.body.password, function(err, savedUser) {
+    if (err) {
+      res.status(500).send('Something went wrong');
+    } else {
+      req.session.userId = savedUser._id;
+      res.redirect('/profile');
+    }
+  });
+}
+
+function newLoginSession(req, res) {
+  User.authenticate(req.body.email, req.body.password, function(err, user) {
+    if (err) {
+      res.status(400).send(`Error processing login: ${err.message}`);
+    } else {
+      req.session.userId = user._id;
+      res.redirect('/profile');
+    }
+  });
+}
+
+
+
+
+
+// export
 module.exports = {
-	selectAllUsers : selectAllUsers,
-	selectUser : selectUser,
-	createUser : createUser,
-	updateUser : updateUser,
-	deleteUser : deleteUser
+  getSignupPage,
+  getLoginPage,
+  registerNewUser,
+  newLoginSession,
+  getLogoutPage,
+  getProfilePage
 };
-

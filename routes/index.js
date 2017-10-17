@@ -8,9 +8,9 @@ router.get('/', (req, res) => {
 
 const cartRoute = require('./carts');
 const itemRoute = require('./items');
-const userRoute = require('./users');
+// const userRoute = require('./users');
 const adminRoute = require('./admin');
-const accountRoute = require('./accounts')
+const accountRoute = require('./accounts');
 
 // Item API Routes
 router.route('/api/items')
@@ -61,16 +61,28 @@ router.route('/admin/home/items/:id')
     .put(itemRoute.updateItem)
     .delete(itemRoute.deleteItem);
 
-router.route('/admin')
-    .get(adminRoute.renderAdminLogin);
+// router.route('/admin')
+//     .get(adminRoute.renderAdminLogin);
 
-router.route('/admin/home')
-    .get(adminRoute.renderAdminHome);
+// router.route('/admin/home')
+//     .get(adminRoute.renderAdminHome);
+
+router.route('/signup')
+    .get(accountRoute.getSignupPage);
 
 router.route('/sessions')
     .post(accountRoute.newLoginSession);
 
 router.route('/users')
     .post(accountRoute.registerNewUser);
+
+    router.route('/profile')
+    .get(accountRoute.getProfilePage);
+
+router.route('/login')
+    .get(accountRoute.getLoginPage);
+
+router.route('/logout')
+    .get(accountRoute.getLogoutPage);
 
 module.exports = router;
