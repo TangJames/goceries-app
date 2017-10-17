@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
-  email: {
+  username: {
     type: String,
     required: true,
     unique: true
@@ -11,14 +11,13 @@ const UserSchema = new mongoose.Schema({
 });
 
 
-UserSchema.statics.createSecure = function(email, password, callback) {
+UserSchema.statics.createSecure = function(username, password, callback) {
   const UserModel = this;
 
   bcrypt.genSalt(function(err, salt) {
-    // console.log(`Here's my salt! ${salt}`);
     bcrypt.hash(password, salt, function(err, hash) {
       UserModel.create({
-        email: email,
+        username: username,
         passwordHash: hash
       }, callback);
     });
@@ -29,16 +28,16 @@ UserSchema.methods.checkPassword = function(password, callback) {
   bcrypt.compare(password, this.passwordHash, callback);
 };
 
-UserSchema.statics.authenticate = function(email, password, callback) {
+UserSchema.statics.authenticate = function(username, password, callback) {
   this.findOne({
-    email,
+    username,
   }, function(err, foundUser) {
     if (!foundUser) {
-      callback(new Error(`Could not find user with email: ${email}`), null);
+      callback(new Error(`Could not find user with username: ${username}. <a href="/admin/login"> Go Back? </a>`), null);
     } else {
       foundUser.checkPassword(password, function(err, passwordsMatch) {
         if (err || !passwordsMatch) {
-          callback(new Error('Passwords did not match'), null);
+          callback(new Error('Passwords did not match. <a href="/admin/login">Try Again?</a>'), null);
         } else {
           callback(null, foundUser);
         }

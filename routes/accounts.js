@@ -1,16 +1,6 @@
 const User = require('../models/user');
 
 
-
-// function getHomePage(req, res) {
-//   User.find({}, function(err, currentUser) {
-//     res.render('index', {
-//       users: currentUser
-//     });
-//   });
-// }
-
-
 function getSignupPage(req, res) {
   res.render('adminSignup');
 }
@@ -20,10 +10,8 @@ function getLoginPage(req, res) {
 }
 
 function getLogoutPage(req, res) {
-
   req.session.userId = null;
-
-  res.redirect('/login');
+  res.redirect('/admin/login');
 }
 
 
@@ -38,25 +26,24 @@ function getProfilePage(req, res) {
 }
 
 
-
 function registerNewUser(req, res) {
-  User.createSecure(req.body.email, req.body.password, function(err, savedUser) {
+  User.createSecure(req.body.username, req.body.password, function(err, savedUser) {
     if (err) {
-      res.status(500).send('Something went wrong');
+      res.status(500).send('Something went wrong. ' + '<a href="/admin/signup">Go Back?</a>');
     } else {
       req.session.userId = savedUser._id;
-      res.redirect('/profile');
+      res.redirect('/admin/panel');
     }
   });
 }
 
 function newLoginSession(req, res) {
-  User.authenticate(req.body.email, req.body.password, function(err, user) {
+  User.authenticate(req.body.username, req.body.password, function(err, user) {
     if (err) {
       res.status(400).send(`Error processing login: ${err.message}`);
     } else {
       req.session.userId = user._id;
-      res.redirect('/profile');
+      res.redirect('/admin/panel');
     }
   });
 }
@@ -64,8 +51,6 @@ function newLoginSession(req, res) {
 
 
 
-
-// export
 module.exports = {
   getSignupPage,
   getLoginPage,
