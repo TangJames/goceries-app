@@ -7,6 +7,9 @@
 </head>
 <body>
 
+    <% if (user && user.username) { %>
+    You're logged in as <%= user.username %>!</h2>
+    <a href="/admin/logout" class="btn btn-default">Log Out</a>
 
     <div class="flexbox-container">
         <div>
@@ -25,17 +28,17 @@
                 <input id="submitDelete" type="submit" value="DELETE ITEM">
             </form>
 
-            <form action="">
+            <form id="updateData" action="">
                 <label for="update" class="boldMe">Update Item by ID: </label>
                 <br>
                 <label for="ID">Object ID: </label>
-                <input type="text" name="deleteById">
+                <input type="text" id="getIdValue" name="deleteById">
                 <br>
                 <label for="name">Update Name: </label>
-                <input type="text" name="name">
+                <input type="text" id="getNameVal" name="name">
                 <br>
                 <label for="price">Update Price: </label>
-                <input type="text" name="price">
+                <input type="text" id="getPriceVal" name="price">
                 <br>
                 <input type="submit" id="submitUpdate" value="UPDATE ITEM">
             </form>
@@ -45,6 +48,11 @@
             <div class="itemList"></div>
         </div>
     </div>
+
+    <% } else { %>
+        You're not logged in. </h2>
+        <a href="/admin/login">Log in</a>
+    <% } %>
 
 
 
