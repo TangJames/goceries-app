@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/MattRay0295/goceries-app#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.33",
     "mongoose": "^4.12.1"

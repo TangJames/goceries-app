@@ -10,6 +10,7 @@ const cartRoute = require('./carts');
 const itemRoute = require('./items');
 const userRoute = require('./users');
 const adminRoute = require('./admin');
+const accountRoute = require('./accounts')
 
 // Item API Routes
 router.route('/api/items')
@@ -65,5 +66,11 @@ router.route('/admin')
 
 router.route('/admin/home')
     .get(adminRoute.renderAdminHome);
+
+router.route('/sessions')
+    .post(accountRoute.newLoginSession);
+
+router.route('/users')
+    .post(accountRoute.registerNewUser);
 
 module.exports = router;

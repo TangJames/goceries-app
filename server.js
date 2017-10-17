@@ -5,7 +5,6 @@ const path = require('path');
 
 // app setup
 const app = express();
-
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
@@ -17,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 const index = require('./routes/index.js');
 
 app.use('/', index);
-
 
 
 
