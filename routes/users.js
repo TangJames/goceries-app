@@ -95,4 +95,3 @@ module.exports = {
 	updateUser : updateUser,
 	deleteUser : deleteUser
 };
->>>>>>> e1e5fff2d53512282e5037632f2eb38d4a827423
