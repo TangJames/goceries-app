@@ -32,10 +32,10 @@ var initializeItems = (resp) => {
 		products[child_id] = child.name;
 
 		//create a single product with name, price, and tag(s)
-		var prod 	= `<p class="product-name">${child.name}</p>`
+		var prod 	= `<p class="product-name">${child.name}<br/>`
+					+ `<span class="product-tags">${child.tags}</span></p>`
 					+ `<p class="product-price">$${child.price}</p>`
-					+ `<p class="product-tags">${child.tags}</p>`
-					+ `<button class="add-item" value="${child_id}">[+]</button>`;
+					+ `<button class="add-item" value="${child_id}">Add to Cart</button>`;
 		$('#select-products').append(`<div>${prod}</div>`);
 
 		//add click event to the current product's button.
