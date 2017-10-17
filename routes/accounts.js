@@ -3,7 +3,7 @@ const User = require('../models/user');
 function getSignupPage(req, res) {
   res.render(''); //TODO signup page goes here
 }
-//THIS ADDS NEW USER
+//THIS ADDS NEW USERR
 function registerNewUser(req, res) {
   console.log('registerNewUser');
   User.createSecure(req.body.email, req.body.password, function(err, savedUser) {
