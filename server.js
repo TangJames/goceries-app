@@ -29,7 +29,6 @@ app.use('/', index);
 
 
 
-
 //start server
 app.listen(port, function() {
   console.log('Server is listening on port 3000!');
