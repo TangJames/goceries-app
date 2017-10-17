@@ -1,4 +1,3 @@
-
 const DB = require('../models');
 
 //Selects one user by parameter id from specified DB.User
@@ -46,6 +45,8 @@ module.exports = {
 	updateUser : updateUser,
 	deleteUser : deleteUser
 };
+<<<<<<< HEAD
+=======
 
 const DB = require('../models');
 
@@ -94,3 +95,4 @@ module.exports = {
 	updateUser : updateUser,
 	deleteUser : deleteUser
 };
+>>>>>>> e1e5fff2d53512282e5037632f2eb38d4a827423
