@@ -1,10 +1,6 @@
-
-
 $(function() {
 
-
-
-
+    getItems();
     function getItems() {
         $.ajax({
             method: 'GET',
@@ -15,7 +11,6 @@ $(function() {
         });
     }
     function onGetItemSuccess(data) {
-
         data.forEach((value) => {
             $('.itemList').append("<p>Object ID: " + value._id + "</p>");
             $('.itemList').append("<p>Name: " + value.name + "</p>");
@@ -23,12 +18,8 @@ $(function() {
         });
     }
     $('#getFirstItem').on('click', (e) => {
-        getItems();
-        $('.itemList p').empty();
+        removeItemsThenRefresh();
     });
-
-
-
 
 
     function postItems() {
@@ -46,14 +37,9 @@ $(function() {
     $('#submitPost').on('click', function(e) {
         e.preventDefault();
         postItems();
-        $('.itemList p').empty();
-        getItems();
+        removeItemsThenRefresh();
         $(this).closest('form').find("input[type=text], textarea").val("");
     });
-
-
-
-
 
 
 
@@ -73,20 +59,18 @@ $(function() {
         var splitString = $('#deleteData').serialize().split('=');
         var idAfterSplit = splitString[1];
         deleteItemById(idAfterSplit);
-        $('.itemList p').empty();
-        getItems();
+        removeItemsThenRefresh();
         $(this).closest('form').find("input[type=text], textarea").val("");
     });
 
 
-    // doesnt work
 
-    function updateItemById() {
-        let id = '59e5231e5305602b4d4d38d7';
+    function updateItemById(options) {
         $.ajax({
             method: 'PUT',
-            url: `http://localhost:3000/api/items/${id}`,
+            url: `http://localhost:3000/api/items/${options.id}`,
             dataType: 'json',
+            data: options,
             success: onUpdateSuccess
         });
     }
@@ -96,19 +80,32 @@ $(function() {
     }
 
     $('#submitUpdate').on('click', function(e) {
-        // e.preventDefault();
-        let options = {};
-        let updateFormSerialize = $('#updateData').serialize();
-        console.log(updateFormSerialize);
-        updateItemById();
+        e.preventDefault();
+        let options = {
+            id: '',
+            name: '',
+            price: ''
+        };
+        options.id = document.getElementById('getIdValue').value;
+        options.name = document.getElementById('getNameVal').value;
+        options.price = document.getElementById('getPriceVal').value;
+        updateItemById(options);
+        removeItemsThenRefresh();
+        $(this).closest('form').find("input[type=text], textarea").val("");
     });
 
+    // Util Function DRY
+    function removeItemsThenRefresh() {
+        $('.itemList p').empty();
+        getItems();
+    }
 
 
 
 
-
-
+    $('.message a').click(function(){
+       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
 
 
 
