@@ -42,12 +42,7 @@ router.get('/storefront', (req, res) => {
 
 
 
-
-
-// Admin Security Routes
-
-router.route('/admin/signup')
-    .get(accountRoute.getSignupPage);
+// Admin Page Security Routes
 
 router.route('/sessions')
     .post(accountRoute.newLoginSession);
@@ -63,5 +58,26 @@ router.route('/admin/login')
 
 router.route('/admin/logout')
     .get(accountRoute.getLogoutPage);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

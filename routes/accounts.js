@@ -1,10 +1,6 @@
 const User = require('../models/user');
 
 
-function getSignupPage(req, res) {
-  res.render('adminSignup');
-}
-
 function getLoginPage(req, res) {
   res.render('admin');
 }
@@ -29,7 +25,7 @@ function getProfilePage(req, res) {
 function registerNewUser(req, res) {
   User.createSecure(req.body.username, req.body.password, function(err, savedUser) {
     if (err) {
-      res.status(500).send('Something went wrong. ' + '<a href="/admin/signup">Go Back?</a>');
+      res.status(500).send('Something went wrong. ' + '<a href="/admin/login">Go Back?</a>');
     } else {
       req.session.userId = savedUser._id;
       res.redirect('/admin/panel');
@@ -52,7 +48,6 @@ function newLoginSession(req, res) {
 
 
 module.exports = {
-  getSignupPage,
   getLoginPage,
   registerNewUser,
   newLoginSession,
