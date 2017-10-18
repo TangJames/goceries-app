@@ -21,16 +21,25 @@
 
 		<section class="create-order">
 			<div class="products">
-				<h3>Products:</h3>
+				<!-- selected disabled hidden -->
+				<div class="products-title"><h3>Products</h3> <select id="select-category">
+					<option value="" >Select Category</option>
+				</select></div>
 				<div id="select-products">
 
 				</div>
 
 			</div>
 			<div class="cart">
-				<h3>Cart:</h3>
+				<h3>Cart</h3>
 				<div id="edit-cart">
 
+				</div>
+				<hr/>
+				<div class="cart-totals">
+					<div><span class="sub-total">Subtotal +</span> <span id="sub-total-value">Subtotal</span></div>
+					<div><span class="tax-total">Tax (8.25%) =</span> <span id="tax-total-value">Subtotal</span></div>
+					<div><span class="order-total">Order Total</span> <span id="order-total-value">Subtotal</span></div>
 				</div>
 				<button id="submit-cart" class="submit-cart">Complete Order</button>
 

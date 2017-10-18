@@ -7,9 +7,24 @@ function selectItem(req, res) {
 	});
 }//end of selectItem()
 
+//Selects items by parameter tags from specified DB.Item
+function selectItemsByTag(req, res) {
+	DB.Item.find({tags: req.params.tags}, (err, fItem) => {
+		res.json(fItem);
+	});
+}//end of selectItem()
+
 //Selects all items from specified DB.Item
 function selectAllItems(req, res) {
 	DB.Item.find((err, items) => { // send all items as JSON response
+		if (err) { return console.log("index error: " + err); }
+		res.json(items);
+	});
+}//end of selectAllItems()
+
+//Selects all item tags from specified DB.Item
+function selectAllItemTags(req, res) {
+	DB.Item.distinct('tags',(err, items) => { // send all items as JSON response
 		if (err) { return console.log("index error: " + err); }
 		res.json(items);
 	});
@@ -43,5 +58,7 @@ module.exports = {
 	selectItem : selectItem,
 	createItem : createItem,
 	updateItem : updateItem,
-	deleteItem : deleteItem
+	deleteItem : deleteItem,
+	selectItemsByTag : selectItemsByTag,
+	selectAllItemTags :selectAllItemTags
 };
