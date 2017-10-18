@@ -111,12 +111,6 @@ $(function() {
         getItems();
     }
 
-$('cite.fn').each(function () {
-    if ($(this).text() == 'blabla') {
-        $(this).css('color', 'red');
-    }
-});
-
 
     $('.message a').click(function(){
        $('form').animate({height: "toggle", opacity: "toggle"}, "slower");
