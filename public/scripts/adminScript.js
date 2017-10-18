@@ -111,12 +111,22 @@ $(function() {
         getItems();
     }
 
-
+$('cite.fn').each(function () {
+    if ($(this).text() == 'blabla') {
+        $(this).css('color', 'red');
+    }
+});
 
 
     $('.message a').click(function(){
        $('form').animate({height: "toggle", opacity: "toggle"}, "slower");
-       $('h1').text('Admin Signup');
+       if ($('h1').text() === 'Admin Login') {
+        $('h1').text('Admin Signup');
+       }
+       else {
+        $('h1').text('Admin Login');
+       }
+
     });
 
 
