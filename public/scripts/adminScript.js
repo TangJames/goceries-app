@@ -104,7 +104,8 @@ $(function() {
 
 
     $('.message a').click(function(){
-       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+       $('form').animate({height: "toggle", opacity: "toggle"}, "slower");
+       $('h1').text('Admin Signup');
     });
 
 
