@@ -8,8 +8,14 @@ const UserSchema = new mongoose.Schema({
     unique: true
   },
   passwordHash: String,
-  firstName: String,
-  lastName: String
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  }
 });
 
 
@@ -32,7 +38,7 @@ UserSchema.methods.checkPassword = function(password, callback) {
   bcrypt.compare(password, this.passwordHash, callback);
 };
 
-UserSchema.statics.authenticate = function(username, password, firstName, lastName, callback) {
+UserSchema.statics.authenticate = function(username, password, callback) {
   this.findOne({
     username,
   }, function(err, foundUser) {

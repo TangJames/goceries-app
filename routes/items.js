@@ -69,9 +69,9 @@ function deleteItem(req, res) {
 
 
 function check_user(req, res, next) {
-    // if (req.session.userId === undefined) {
-    //     return res.json('You do not have permission to access this url.');
-    // }
+    if (req.session.userId === undefined) {
+        return res.json('You do not have permission to access this url.');
+    }
     next();
 }
 
