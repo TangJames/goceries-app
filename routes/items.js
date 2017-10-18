@@ -40,6 +40,7 @@ function createItem(req, res) {
 
 //Updates one item by parameter id from specified DB.Item
 function updateItem(req, res) {
+
     function GetObjectFromKeyValuePairs(pairs) {
         var tmp = {};
 
@@ -52,7 +53,6 @@ function updateItem(req, res) {
     let updateOnlyChangedVals = GetObjectFromKeyValuePairs(req.body);
 
 	DB.Item.update({_id: req.params.id}, {$set: updateOnlyChangedVals}, {new:true}, (err, uItem) => {
-
 		if (err) { return console.log("index error: " + err); }
 		res.json(uItem);
 	});
