@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   saveUninitialized: true,
   resave: true,
-  secret: 'SuperSecretCookie',
+  secret: 'thisAppRocksMySocks',
   cookie: { maxAge: 30 * 60 * 1000 } // 30 minute cookie lifespan (in milliseconds)
 }));
 
