@@ -122,7 +122,10 @@ div#edit-cart .name {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	min-width: 0;
-	padding: 0 8px;
+	padding: 0;
+	width: 100%;
+	border-bottom: 1px solid dimgray;
+	margin-bottom: 3px;
 }
 
 div#edit-cart .remove {
@@ -131,7 +134,8 @@ div#edit-cart .remove {
 	border-radius: 5px 0px 0px 5px;
 	background-color: rgba(139, 0, 0, 1);
 	color: white;
-	font-size: 20px;
+	font-size: 30px;
+	    height: 6vh;
 }
 
 div#edit-cart .remove:hover {
@@ -140,9 +144,9 @@ div#edit-cart .remove:hover {
 }
 
 
-div#edit-cart p {
+div#edit-cart .cart-product {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	margin: 5px 0 0 0;
 	padding: 0px 5px 0px 0px;
@@ -153,17 +157,33 @@ div#edit-cart p {
 	box-shadow: 2px 2px 2px rgba(0,0,0, .25);
 }
 
+div#edit-cart .cart-product-details {
+display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+	margin-left: 5px;
+
+	width: 100%;
+}
+
+div#edit-cart .price {
+	margin-top: 3px;
+display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+}
+
 div#edit-cart input
 {
 	text-align: right;
-	/* background-color: rgba(0,0,0,0); */
 	-webkit-appearance: none;
-	font-size: 20px;
+	font-size: 16px;
 	border: 0px;
 	color: black;
-
+	margin-left: 3px;
+	margin-right: 3px;
 	box-sizing: border-box;
-	max-width: 50px;
+	max-width: 40px;
 	text-align: center;
 }
 

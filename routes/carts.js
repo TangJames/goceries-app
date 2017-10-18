@@ -2,7 +2,9 @@ const DB = require('../models');
 
 //Selects one cart by parameter id from specified DB.Cart
 function selectCart(req, res) {
-	DB.Cart.findOne({_id: req.params.id}, (err, fCart) => {
+	DB.Cart.findOne({_id: req.params.id})
+	.populate('items')
+	.exec((err, fCart) => {
 		res.json(fCart);
 	});
 }//end of selectCart()
