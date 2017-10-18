@@ -4,12 +4,15 @@
 	<meta charset="utf-8">
 	<title> Go-ceries: Storefront </title>
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="scripts/storefront.js"></script>
+	<script src="/scripts/storefront.js"></script>
 
-	<link rel="stylesheet" href="styles/storefront.css" media="screen" />
+	<link rel="stylesheet" href="/styles/storefront.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Roboto+Condensed:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 </head>
 <body>
+    <% if (user && user.username) { %>
+
+
 	<header>
 		<h1>Go-ceries</h1>
 		<nav></nav>
@@ -50,5 +53,9 @@
 
 	<footer>
 	</footer>
+    <% } else { %>
+        You're not logged in. </h2>
+        <a href="/home/login">Log in</a>
+    <% } %>
 </body>
 </html>
