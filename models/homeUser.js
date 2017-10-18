@@ -7,18 +7,22 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  passwordHash: String
+  passwordHash: String,
+  firstName: String,
+  lastName: String
 });
 
 
-UserSchema.statics.createSecure = function(username, password, callback) {
+UserSchema.statics.createSecure = function(username, password, firstName, lastName, callback) {
   const UserModel = this;
 
   bcrypt.genSalt(function(err, salt) {
     bcrypt.hash(password, salt, function(err, hash) {
       UserModel.create({
         username: username,
-        passwordHash: hash
+        passwordHash: hash,
+        firstName: firstName,
+        lastName: lastName
       }, callback);
     });
   });
@@ -28,7 +32,7 @@ UserSchema.methods.checkPassword = function(password, callback) {
   bcrypt.compare(password, this.passwordHash, callback);
 };
 
-UserSchema.statics.authenticate = function(username, password, callback) {
+UserSchema.statics.authenticate = function(username, password, firstName, lastName, callback) {
   this.findOne({
     username,
   }, function(err, foundUser) {
