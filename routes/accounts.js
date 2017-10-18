@@ -1,39 +1,56 @@
 const User = require('../models/user');
 
-function getSignupPage(req, res) {
-  res.render(''); //TODO signup page goes here
+
+function getLoginPage(req, res) {
+  res.render('admin');
 }
-//THIS ADDS NEW USERR
-function registerNewUser(req, res) {
-  console.log('registerNewUser');
-  User.createSecure(req.body.email, req.body.password, function(err, savedUser) {
-    if (err) {
-      res.status(500).send('Something went wrong adding new user');
-    } else {
-      res.json(savedUser);
-    }
+
+function getLogoutPage(req, res) {
+  req.session.userId = null;
+  res.redirect('/admin/login');
+}
+
+
+function getProfilePage(req, res) {
+  User.findOne({
+    _id: req.session.userId
+  }, function(err, currentUser) {
+    res.render('adminHome', {
+        user: currentUser
+    });
   });
 }
-//THIS GETS LOGIN PAGE
-function getLoginPage(req, res) {
-  console.log('login');
-  res.render('login');
-}
-//THIS AUTHENTICATES CURRENT USERS
-function newLoginSession(req, res) {
-  User.authenticate(req.body.email, req.body.password, function(err, user) {
+
+
+function registerNewUser(req, res) {
+  User.createSecure(req.body.username, req.body.password, function(err, savedUser) {
     if (err) {
-      res.status(400).send(`Error processing login: ${err.message}`);
+      res.status(500).send('Something went wrong. ' + '<a href="/admin/login">Go Back?</a>');
     } else {
-      res.json(user);
+      req.session.userId = savedUser._id;
+      res.redirect('/admin/panel');
     }
   });
 }
 
-// export
-module.exports = {
-  getSignupPage: getSignupPage,
-  registerNewUser: registerNewUser,
-  getLoginPage: getLoginPage,
-  newLoginSession: newLoginSession
+function newLoginSession(req, res) {
+  User.authenticate(req.body.username, req.body.password, function(err, user) {
+    if (err) {
+      res.status(400).send(`Error processing login: ${err.message}`);
+    } else {
+      req.session.userId = user._id;
+      res.redirect('/admin/panel');
+    }
+  });
 }
+
+
+
+
+module.exports = {
+  getLoginPage,
+  registerNewUser,
+  newLoginSession,
+  getLogoutPage,
+  getProfilePage
+};
