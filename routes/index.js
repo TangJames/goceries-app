@@ -13,14 +13,19 @@ const accountRoute = require('./accounts');
 
 // Item API Routes
 router.route('/api/items')
-    .get(itemRoute.selectAllItems)
-    .post(itemRoute.createItem);
+    .get(itemRoute.check_user, itemRoute.selectAllItems)
+    .post(itemRoute.check_user, itemRoute.createItem);
+
+router.route('/api/items/tags')
+	.get(itemRoute.selectAllItemTags);
 
 router.route('/api/items/:id')
-    .get(itemRoute.selectItem)
-    .put(itemRoute.updateItem)
-    .delete(itemRoute.deleteItem);
+    .get(itemRoute.check_user, itemRoute.selectItem)
+    .put(itemRoute.check_user, itemRoute.updateItem)
+    .delete(itemRoute.check_user, itemRoute.deleteItem);
 
+router.route('/api/items/tags/:tags')
+    .get(itemRoute.selectItemsByTag);
 
 // Cart API Routes
 router.route('/api/carts')
