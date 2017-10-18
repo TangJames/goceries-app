@@ -23,7 +23,7 @@ function getProfilePage(req, res) {
 
 
 function registerNewUser(req, res) {
-  HomeUser.createSecure(req.body.username, req.body.password, function(err, savedUser) {
+  HomeUser.createSecure(req.body.username, req.body.password, req.body.firstName, req.body.lastName, function(err, savedUser) {
     if (err) {
       res.status(500).send('Something went wrong. ' + '<a href="/home/login">Go Back?</a>');
     } else {
