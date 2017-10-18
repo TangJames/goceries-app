@@ -16,11 +16,16 @@ router.route('/api/items')
     .get(itemRoute.selectAllItems)
     .post(itemRoute.createItem);
 
+	router.route('/api/items/tags')
+	    .get(itemRoute.selectAllItemTags);
+
 router.route('/api/items/:id')
     .get(itemRoute.selectItem)
     .put(itemRoute.updateItem)
     .delete(itemRoute.deleteItem);
 
+router.route('/api/items/tags/:tags')
+    .get(itemRoute.selectItemsByTag);
 
 // Cart API Routes
 router.route('/api/carts')
