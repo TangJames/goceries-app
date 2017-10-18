@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
 
 const cartRoute = require('./carts');
 const itemRoute = require('./items');
-const adminRoute = require('./admin');
 const accountRoute = require('./accounts');
 
 // Item API Routes
