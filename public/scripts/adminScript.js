@@ -107,6 +107,7 @@ $(function() {
     // Util Function DRY
     function removeItemsThenRefresh() {
         $('.itemList p').empty();
+        $('hr').remove();
         getItems();
     }
 
