@@ -17,7 +17,7 @@ router.route('/api/items')
     .post(itemRoute.check_user, itemRoute.createItem);
 
 router.route('/api/items/tags')
-	.get(itemRoute.selectAllItemTags);
+	.get(itemRoute.check_user, itemRoute.selectAllItemTags);
 
 router.route('/api/items/:id')
     .get(itemRoute.check_user, itemRoute.selectItem)
@@ -25,17 +25,17 @@ router.route('/api/items/:id')
     .delete(itemRoute.check_user, itemRoute.deleteItem);
 
 router.route('/api/items/tags/:tags')
-    .get(itemRoute.selectItemsByTag);
+    .get(itemRoute.check_user, itemRoute.selectItemsByTag);
 
 // Cart API Routes
 router.route('/api/carts')
-    .get(cartRoute.selectAllCarts)
-    .post(cartRoute.createCart);
+    .get(itemRoute.check_user, cartRoute.selectAllCarts)
+    .post(itemRoute.check_user, cartRoute.createCart);
 
 router.route('/api/carts/:id')
-    .get(cartRoute.selectCart)
-    .put(cartRoute.updateCart)
-    .delete(cartRoute.deleteCart);
+    .get(itemRoute.check_user, cartRoute.selectCart)
+    .put(itemRoute.check_user, cartRoute.updateCart)
+    .delete(itemRoute.check_user, cartRoute.deleteCart);
 
 
 
