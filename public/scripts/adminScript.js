@@ -15,6 +15,8 @@ $(function() {
             $('.itemList').append("<p>Object ID: " + value._id + "</p>");
             $('.itemList').append("<p>Name: " + value.name + "</p>");
             $('.itemList').append("<p>Price: $" + value.price + "</p>");
+            $('.itemList').append("<p>Tags: " + value.tags + "</p>");
+            $('.itemList').append("<hr>");
         });
     }
     $('#getFirstItem').on('click', (e) => {
@@ -84,19 +86,28 @@ $(function() {
         let options = {
             id: '',
             name: '',
-            price: ''
+            price: '',
+            tags: ''
         };
         options.id = document.getElementById('getIdValue').value;
         options.name = document.getElementById('getNameVal').value;
         options.price = document.getElementById('getPriceVal').value;
+        options.tags = document.getElementById('getTagVal').value;
         updateItemById(options);
         removeItemsThenRefresh();
         $(this).closest('form').find("input[type=text], textarea").val("");
     });
 
+
+
+
+
+
+
     // Util Function DRY
     function removeItemsThenRefresh() {
         $('.itemList p').empty();
+        $('hr').remove();
         getItems();
     }
 

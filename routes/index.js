@@ -3,13 +3,13 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.render('login');
+  res.redirect('/home/login');
 });
 
 const cartRoute = require('./carts');
 const itemRoute = require('./items');
-const adminRoute = require('./admin');
 const accountRoute = require('./accounts');
+const homeRoute = require('./homeAccounts');
 
 // Item API Routes
 router.route('/api/items')
@@ -38,14 +38,6 @@ router.route('/api/carts/:id')
     .delete(cartRoute.deleteCart);
 
 
-router.get('/storefront', (req, res) => {
-    res.render('storefront');
-});
-
-
-
-
-
 
 // Admin Page Security Routes
 
@@ -65,8 +57,22 @@ router.route('/admin/logout')
     .get(accountRoute.getLogoutPage);
 
 
+// Home Page Authentication
 
+router.route('/home/sessions')
+    .post(homeRoute.newLoginSession);
 
+router.route('/home/users')
+    .post(homeRoute.registerNewUser);
+
+router.route('/home/panel')
+    .get(homeRoute.getProfilePage);
+
+router.route('/home/login')
+    .get(homeRoute.getLoginPage);
+
+router.route('/home/logout')
+    .get(homeRoute.getLogoutPage);
 
 
 
