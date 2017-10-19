@@ -289,4 +289,10 @@ footer {
 	justify-content: center;
 	bottom: 0;
 	flex: 1;
+	text-align: center;
+}
+
+.footer a {
+	text-decoration: none;
+	color: black;
 }
