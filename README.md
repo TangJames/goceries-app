@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://goceries.mattray.io"><img src="http://i.imgur.com/XcrTQ2u.png" alt="GO-ceries" width="500"></a>
+  <a href="https://goceries.mattray.io"><img src="http://i.imgur.com/XcrTQ2u.png" alt="GO-ceries" width="700"></a>
   <br>
 
   <br>
@@ -16,7 +16,7 @@
 </p>
 <br>
 
-<img src="https://imgur.com/a/qLhHV.png" alt="GO-ceries" width="500"></a>
+<a><img src="https://i.imgur.com/oFe75xV.jpg" alt="Storefront" width="700"></a>
 
 ## Key Features
 
