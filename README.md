@@ -16,7 +16,7 @@
 </p>
 <br>
 
-![Storefront](https://imgur.com/a/qLhHV.png)
+![Storefront](https://imgur.com/a/qLhHV.jpg)
 
 ## Key Features
 
