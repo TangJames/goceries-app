@@ -31,8 +31,9 @@ function AjaxRequest(method, url, data, onSuccess) {
 var getProductMarkup = (product) => {
 	var productPrice = parseFloat(product.price).toFixed(2);
 	return '<div>'
-			+ `<p class="product-name">${product.name}<br/>`
-			+ `<span class="product-tags">${product.tags}</span></p>`
+			+ `<img class="product-image" src="/images/${product._id}.jpg" />`
+			+ `<p class="product-name">${product.name}</p>`
+			+ `<span class="product-tags">${product.tags}</span>`
 			+ `<p class="product-price">${productPrice}</p>`
 			+ `<button class="add-product" value="${product._id}">Add to Cart</button>`
 			+ '</div>';
@@ -94,8 +95,10 @@ var addProductToCart = (product,qty) => {
 		$(`#edit-cart input[name="${key}"]`).on('input propertychange paste',function(e) {
 			e.preventDefault();
 			qtyInputRef = $(`#edit-cart input[name="${key}"]`);
-			productTotalRef.text((parseInt(qtyInputRef.val()) *parseFloat(productPriceRef.text())).toFixed(2));
-			calculateOrderTotals();
+			if (qtyInputRef.val().length !== 0) {
+				productTotalRef.text((parseInt(qtyInputRef.val()) *parseFloat(productPriceRef.text())).toFixed(2));
+				calculateOrderTotals();
+			}
 		});
 
 
