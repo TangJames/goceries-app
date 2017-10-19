@@ -1,18 +1,17 @@
 
 <h1 align="center">
   <br>
+  ![Alt text](https://imgur.com/a/jPXWq)
   <a href="https://goceries.mattray.io"><img src="https://imgur.com/a/jPXWq" alt="GO-ceries" width="200"></a>
   <br>
-  GO-ceries
   <br>
 </h1>
 
 <h4 align="center"> A minimal online storefront build using </h4>
 
 <p align="center">
-  <a href="https://badge.fury.io/js/electron-markdownify">
     <img src="https://badge.fury.io/js/electron-markdownify.svg"
-         alt="Gitter">
+         alt="">
   </a>
 </p>
 <br>
