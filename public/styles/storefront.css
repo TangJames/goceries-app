@@ -101,6 +101,7 @@ section.create-order h3{
 	display: flex;
 	justify-content: space-between;
 	align-content: center;
+	text-transform: uppercase;
 }
 
 .products-title select {

@@ -40,6 +40,8 @@ router.route('/api/carts/:id')
 
 router.route('/api/carts/open/:user_id')
     .get(itemRoute.check_user, cartRoute.selectOpenCartByUserId)
+	router.route('/api/carts/closed/:user_id')
+	    .get(itemRoute.check_user, cartRoute.selectClosedCartsByUserId)
 
 
 

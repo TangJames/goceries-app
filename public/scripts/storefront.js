@@ -2,7 +2,6 @@
 
 var mainDomain = 'http://localhost:3000/api';
 var products = [];
-//var cart_id = "59e7954907f18b0870c4732b"; //test cart
 var cart_id = "";
 var user_id = "";
 
@@ -159,7 +158,19 @@ var initializeCategories  = (resp) => {
 		e.preventDefault();
 		$('#select-products').empty();
 		var valueSelected = this.value;
-		(new AjaxRequest('GET', `${mainDomain}/items/tags/${valueSelected}`, null, initializeProducts)).execute();
+
+		if(valueSelected.length === 0){
+			$(`.products-title h3`).text("Products");
+			(new AjaxRequest('GET', `${mainDomain}/items`, null, initializeProducts)).execute();
+		}
+		else{
+			$(`.products-title h3`).text(`${valueSelected}`);
+			(new AjaxRequest('GET', `${mainDomain}/items/tags/${valueSelected}`, null, initializeProducts)).execute();
+		}
+
+		//check the first category automatically (most likely prompt text)
+		$("#select-category input:nth(0)").prop("checked", true);
+
 	});
 }// end of initializeCategories()
 
@@ -181,9 +192,11 @@ var attemptCartRetrieval = (resp) => {
 
 //main script starting point. executes when document is ready
 $(() => {
+
+	var path =  window.location.origin?window.location.origin+'/':window.location.protocol+'/'+window.location.host+'/';
+	console.log(path);
 	user_id = $('#user_id').text();
-	console.log('Go forth and code!');
-	console.log(user_id);
+
 	//populate page with products
 	(new AjaxRequest('GET', `${mainDomain}/items`, null, initializeProducts)).execute();
 
@@ -209,14 +222,9 @@ $(() => {
 			items : products,
 			itemsQty : productsQty
 		};
-		if(cart_id.length === 0){
+		if(cart_id.length === 0)
 			(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, addCart)).execute();
-		}
-		else {
+		else
 			(new AjaxRequest('PUT', `${mainDomain}/carts/${cart_id}`, newCart, addCart)).execute();
-		}
-
 	});
-
-
 });// end of document ready
