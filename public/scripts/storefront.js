@@ -68,7 +68,7 @@ var addProductToCart = (product,qty) => {
 	console.log(existsInCart);
 	//checks if product exists in the cart.
 	if(existsInCart) { //If product exists in the cart, add 1 to the existing quantity
-		qtyInputRef.val(parseInt(existsInCart)+1);
+		qtyInputRef.val(parseInt(existsInCart)+1).change();
 	} // end of if (existsInCart)
 	else { //else product does not exist in the cart, add a new product entry into the cart
 		//create product entry in the cart
@@ -87,7 +87,7 @@ var addProductToCart = (product,qty) => {
 		var productPriceRef = $(`#edit-cart span.cart-product-price:last`);
 
 		//calculates total product price. product's price * qty
-		$(`#edit-cart input[name="${key}"]`).on('input propertychange paste',function(e) {
+		$(`#edit-cart input[name="${key}"]`).on('input propertychange change paste',function(e) {
 			e.preventDefault();
 			qtyInputRef = $(`#edit-cart input[name="${key}"]`);
 			if (qtyInputRef.val().length !== 0) {
@@ -157,7 +157,7 @@ var initializeCategories  = (resp) => {
 		e.preventDefault();
 		$('#select-products').empty();
 		var valueSelected = this.value;
- 
+
 		if(valueSelected.length === 0){
 			$(`.products-title h3`).text("Products");
 			(new AjaxRequest('GET', `${mainDomain}/items`, null, initializeProducts)).execute();
@@ -206,23 +206,31 @@ $(() => {
 
 	//adds event to the #submit-cart button to complete a cart order.
 	$('#submit-cart').on('click',function(e){
-	    e.preventDefault();
+		e.preventDefault();
 		var cart_products = $('#edit-cart input').serializeArray();
 		var products = [];
 		var productsQty = [];
-		cart_products.forEach((product) => {
-			products.push(product.name);
-			productsQty.push(product.value);
-		});
-
+		if(cart_products.length !== 0) {
+			cart_products.forEach((product) => {
+				products.push(product.name);
+				productsQty.push(product.value);
+			});
+		}
+		else {
+			products = null;
+			productsQty = null;
+		}
 		var newCart = {
-		 	user: user_id,
+			user: user_id,
 			items : products,
 			itemsQty : productsQty
 		};
+
+		console.log(cart_products);
+		console.log(`${cart_id}`);
 		if(cart_id.length === 0)
-			(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, addCart)).execute();
+		(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, addCart)).execute();
 		else
-			(new AjaxRequest('PUT', `${mainDomain}/carts/${cart_id}`, newCart, addCart)).execute();
+		(new AjaxRequest('PUT', `${mainDomain}/carts/${cart_id}`, newCart, addCart)).execute();
 	});
 });// end of document ready
