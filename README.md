@@ -16,7 +16,7 @@
 </p>
 <br>
 
-![screenshot](https://imgur.com/a/qLhHV)
+<img src="https://imgur.com/a/qLhHV.png" alt="GO-ceries" width="500"></a>
 
 ## Key Features
 
