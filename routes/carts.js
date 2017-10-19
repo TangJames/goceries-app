@@ -9,6 +9,15 @@ function selectCart(req, res) {
 	});
 }//end of selectCart()
 
+//Selects one open (incomplete) cart by parameter user._id from specified DB.Cart
+function selectOpenCartByUserId(req, res) {
+	DB.Cart.findOne({'user': req.params.user_id})
+	.populate('items')
+	.exec( (err, fCart) => {
+		res.json(fCart);
+	});
+}//end of selectOpenCartByUserId()
+
 //Selects all carts from specified DB.Cart
 function selectAllCarts(req, res) {
 	DB.Cart.find()
@@ -46,5 +55,6 @@ module.exports = {
 	selectCart : selectCart,
 	createCart : createCart,
 	updateCart : updateCart,
-	deleteCart : deleteCart
+	deleteCart : deleteCart,
+	selectOpenCartByUserId: selectOpenCartByUserId
 };

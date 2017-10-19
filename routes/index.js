@@ -32,10 +32,14 @@ router.route('/api/carts')
     .get(itemRoute.check_user, cartRoute.selectAllCarts)
     .post(itemRoute.check_user, cartRoute.createCart);
 
+
 router.route('/api/carts/:id')
     .get(itemRoute.check_user, cartRoute.selectCart)
     .put(itemRoute.check_user, cartRoute.updateCart)
     .delete(itemRoute.check_user, cartRoute.deleteCart);
+
+router.route('/api/carts/open/:user_id')
+    .get(itemRoute.check_user, cartRoute.selectOpenCartByUserId)
 
 
 
