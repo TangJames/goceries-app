@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title> Go-ceries: Storefront </title>
-	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="/scripts/storefront.js"></script>
 
 	<link rel="stylesheet" href="/styles/storefront.css" media="screen" />
@@ -31,7 +31,9 @@
 				<div class="cart">
 					<h3>Cart</h3>
 					<div id="edit-cart">
-						<p>Welcome back, <b><%= user.firstName %> <%= user.lastName %></b>!<hr/>Any items that you wish to purchase will be displayed below. Have fun!</p>
+						<p>Welcome back, <b><%= user.firstName %> <%= user.lastName %></b>!
+							[ <a href="/home/logout">Log Out</a> ]
+							<hr/>Any items that you wish to purchase will be displayed below. Have fun!</p>
 					</div>
 					<hr/>
 					<div class="cart-totals">
@@ -49,8 +51,13 @@
 		<footer>
 		</footer>
     <% } else { %>
-        You're not logged in. </h2>
-        <a href="/home/login">Log in</a>
+		<header>
+			<h1>Go-ceries</h1>
+
+	        <h2>You're not logged in. </h2>
+	        <h2> [ <a href="/home/login">Log In</a>] </h2>
+		</header>
+		<main>
     <% } %>
 </body>
 </html>
