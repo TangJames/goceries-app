@@ -16,7 +16,7 @@
 </p>
 <br>
 
-![Storefront](https://imgur.com/a/qLhHV.png)
+<img src="https://imgur.com/a/qLhHV.png" alt="GO-ceries" width="500"></a>
 
 ## Key Features
 
