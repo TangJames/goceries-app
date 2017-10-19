@@ -344,8 +344,13 @@ justify-content: space-between;
 footer {
 	background-color: rgba(102,123,131, 0.75);
 	margin: 25px 0 0 0;
-	height: 100px;
 	justify-content: center;
 	bottom: 0;
 	flex: 1;
+	text-align: center;
+}
+
+.footer a {
+	text-decoration: none;
+	color: black;
 }
