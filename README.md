@@ -16,7 +16,7 @@
 </p>
 <br>
 
-<a><img src="https://imgur.com/a/qLhHV.png" alt="storefront" width="500"></a>
+![Storefront](https://imgur.com/a/qLhHV.png)
 
 ## Key Features
 
