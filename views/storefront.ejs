@@ -11,46 +11,40 @@
 </head>
 <body>
     <% if (user && user.username) { %>
-
 		<span id="user_id" style="display:none;"><%= user._id %></span>
 
-	<header>
-		<h1>Go-ceries</h1>
-		<nav></nav>
-	</header>
-	<main>
-		<!-- <div id="select-category">
-			<h3>Category:</h3>
-		</div> -->
+		<header>
+			<h1>Go-ceries</h1>
+			<nav></nav>
+		</header>
+		<main>
+			<section class="create-order">
+				<div class="products">
+					<div class="products-title"><h3>Products</h3><select id="select-category">
+						<option value="">All Categories</option>
+					</select></div>
+					<div id="select-products">
 
-		<section class="create-order">
-			<div class="products">
-				<!-- selected disabled hidden -->
-				<div class="products-title"><h3>Products</h3><select id="select-category">
-					<option value="" >All Categories</option>
-				</select></div>
-				<div id="select-products">
+					</div>
 
 				</div>
-
-			</div>
-			<div class="cart">
-				<h3>Cart</h3>
-				<div id="edit-cart">
+				<div class="cart">
+					<h3>Cart</h3>
+					<div id="edit-cart">
+						<p>Welcome back, <b><%= user.firstName %> <%= user.lastName %></b>!<hr/>Any items that you wish to purchase will be displayed below. Have fun!</p>
+					</div>
+					<hr/>
+					<div class="cart-totals">
+						<div><span class="sub-total">Subtotal +</span> <span id="sub-total-value">0.00</span></div>
+						<div><span class="tax-total">Tax (8.25%) =</span> <span id="tax-total-value">0.00</span></div>
+						<div><span class="order-total">Order Total</span> <span id="order-total-value">0.00</span></div>
+					</div>
+					<button id="submit-cart" class="submit-cart">Complete Order</button>
 
 				</div>
-				<hr/>
-				<div class="cart-totals">
-					<div><span class="sub-total">Subtotal +</span> <span id="sub-total-value">Subtotal</span></div>
-					<div><span class="tax-total">Tax (8.25%) =</span> <span id="tax-total-value">Subtotal</span></div>
-					<div><span class="order-total">Order Total</span> <span id="order-total-value">Subtotal</span></div>
-				</div>
-				<button id="submit-cart" class="submit-cart">Complete Order</button>
+			</section>
 
-			</div>
-		</section>
-
-	</main>
+		</main>
 
 	<footer>
 	<div class="footer">
