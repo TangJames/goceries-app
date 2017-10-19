@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://goceries.mattray.io"><img src="https://imgur.com/a/jPXWq" alt="GO-ceries"></a>
+  <a href="https://goceries.mattray.io"><img src="https://imgur.com/a/jPXWq" alt="GO-ceries" width="200"></a>
   <br>
   GO-ceries
   <br>
