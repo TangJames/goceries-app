@@ -22,6 +22,20 @@
 
 * Admin Panel being able to Create/GET/update/remove items in the storefront
 * Interactive storefront
+* Local Authentication features
+* Unique authentication between home login and admin login
+
+## Required dependencies
+
+- "bcrypt": "^1.0.3",
+- "body-parser": "^1.18.2",
+- "dotenv": "^4.0.0",
+- "ejs": "^2.5.7",
+- "express": "^4.16.2",
+- "express-session": "^1.15.6",
+- "lodash": "^4.17.4",
+- "mongodb": "^2.2.33",
+- "mongoose": "^4.12.1"
 
 
 ## How To Use
@@ -48,3 +62,6 @@ $ npm start
 This software uses code from several open source packages.
 
 - [Node.js](https://nodejs.org/)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Express](https://www.npmjs.com/package/express)
+- [Lodash](https://www.npmjs.com/package/lodash)
