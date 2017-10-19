@@ -31,25 +31,24 @@ function AjaxRequest(method, url, data, onSuccess) {
 var getProductMarkup = (product) => {
 	var productPrice = parseFloat(product.price).toFixed(2);
 	return '<div>'
-			+ `<p class="product-name">${product.name}<br/>`
-			+ `<span class="product-tags">${product.tags}</span></p>`
-			+ `<p class="product-price">${productPrice}</p>`
+			+ `<img class="product-image" src="/images/${product._id}.jpg" />`
+			+ `<p class="product-name">${product.name}</p>`
+			+ `<p class="product-tags">${product.tags}</p>`
+			+ `<span class="product-footer">`
 			+ `<button class="add-product" value="${product._id}">Add to Cart</button>`
+			+ `<span class="product-price">${productPrice}</span>`
+			+ `</span>`
 			+ '</div>';
 } // end of getProductMarkup()
 
 //create a single cart product's markeup with name, price, and quantity.
 var getCartProductMarkup = (product,qty) => {
-	// return '<p>'
-	// 		+ '<span class="remove">×</span> '
-	// 		+ `<span class="name">${products[key]}</span>`
-	// 		+ `<input type='text' value='1' name='${key}'/>`
-	// 		+ '</p>';
 	var cartProductPrice = parseFloat(product.price).toFixed(2);
 	var cartProductTotal = (cartProductPrice * qty).toFixed(2);
 
 	return '<div class="cart-product">'
 			+ '<span class="remove">×</span>'
+			+ `<img class="product-image" src="/images/${product._id}.jpg" />`
 			+ `<div class="cart-product-details">`
 			+ `<span class="name">${product.name}</span> `
 			+ `<div class="price">`
@@ -61,9 +60,6 @@ var getCartProductMarkup = (product,qty) => {
 			+ `</div>`
 			+ '</div>';
 } // end of getCartProductMarkup()
-
-
-
 
 var addProductToCart = (product,qty) => {
 	var key = product._id;
@@ -94,8 +90,10 @@ var addProductToCart = (product,qty) => {
 		$(`#edit-cart input[name="${key}"]`).on('input propertychange paste',function(e) {
 			e.preventDefault();
 			qtyInputRef = $(`#edit-cart input[name="${key}"]`);
-			productTotalRef.text((parseInt(qtyInputRef.val()) *parseFloat(productPriceRef.text())).toFixed(2));
-			calculateOrderTotals();
+			if (qtyInputRef.val().length !== 0) {
+				productTotalRef.text((parseInt(qtyInputRef.val()) *parseFloat(productPriceRef.text())).toFixed(2));
+				calculateOrderTotals();
+			}
 		});
 
 
@@ -147,6 +145,7 @@ var calculateOrderTotals = () => {
 
 //called by successful AjaxRequest. handles population of DOM element #select-category.
 var initializeCategories  = (resp) => {
+
 	resp.forEach((category) => {
 		$(`#select-category`).append(`<option value="${category}">${category}</option>`);
 	});
@@ -158,7 +157,7 @@ var initializeCategories  = (resp) => {
 		e.preventDefault();
 		$('#select-products').empty();
 		var valueSelected = this.value;
-
+ 
 		if(valueSelected.length === 0){
 			$(`.products-title h3`).text("Products");
 			(new AjaxRequest('GET', `${mainDomain}/items`, null, initializeProducts)).execute();
@@ -170,7 +169,6 @@ var initializeCategories  = (resp) => {
 
 		//check the first category automatically (most likely prompt text)
 		$("#select-category input:nth(0)").prop("checked", true);
-
 	});
 }// end of initializeCategories()
 
