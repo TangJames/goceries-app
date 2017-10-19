@@ -50,6 +50,13 @@
         </div>
         <div>
             <button id="getFirstItem" type="submit" >Get Items</button>
+            Order By:
+            <select name="" id="selectCategory" onchange="run();">
+                <option disabled selected>Categories</option>
+                <option value="people">Person</option>
+                <option value="food">Food</option>
+                <option value="drink">Drink</option>
+            </select>
             <div class="itemList"></div>
         </div>
     </div>
@@ -58,7 +65,6 @@
         You're not logged in. </h2>
         <a href="/admin/login">Log in</a>
     <% } %>
-
 
 
 
