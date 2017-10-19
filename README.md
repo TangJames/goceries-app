@@ -1,6 +1,5 @@
 
 <h1 align="center">
-  ![logo](https://imgur.com/a/jPXWq)
   <br>
   <a href="https://goceries.mattray.io"><img src="https://imgur.com/a/jPXWq" alt="GO-ceries" width="350"></a>
   <br>
