@@ -1,9 +1,9 @@
 
 <h1 align="center">
   <br>
-  <a href="https://goceries.mattray.io"><img src="http://i.imgur.com/XcrTQ2u.png" alt="GO-ceries" width="350"></a>
+  <a href="https://goceries.mattray.io"><img src="http://i.imgur.com/XcrTQ2u.png" alt="GO-ceries" width="500"></a>
   <br>
-  
+
   <br>
 </h1>
 
