@@ -101,6 +101,7 @@ section.create-order h3{
 	display: flex;
 	justify-content: space-between;
 	align-content: center;
+	text-transform: uppercase;
 }
 
 .products-title select {
@@ -275,7 +276,7 @@ justify-content: space-between;
 	border-bottom:  1px solid darkgray;
 }
 
-#sub-total-value::before, #tax-total-value::before, #order-total-value::before {
+#sub-total-value:before, #tax-total-value:before, #order-total-value:before, .product-price:before, .cart-product-price:before, .cart-product-total:before {
     content:"$";
 	font-weight: bold;
 

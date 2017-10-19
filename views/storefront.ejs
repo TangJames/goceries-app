@@ -12,6 +12,7 @@
 <body>
     <% if (user && user.username) { %>
 
+		<span id="user_id" style="display:none;"><%= user._id %></span>
 
 	<header>
 		<h1>Go-ceries</h1>
@@ -26,7 +27,7 @@
 			<div class="products">
 				<!-- selected disabled hidden -->
 				<div class="products-title"><h3>Products</h3><select id="select-category">
-					<option value="" >Select Category</option>
+					<option value="" >All Categories</option>
 				</select></div>
 				<div id="select-products">
 

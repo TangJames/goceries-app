@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-//represented as a collection of Carts in the DB. 
+//represented as a collection of Carts in the DB.
 const Cart = mongoose.model('Cart', new mongoose.Schema({
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
+		ref: 'HomeUser'
 	},
 	items: [{
 		type: mongoose.Schema.Types.ObjectId,
