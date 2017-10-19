@@ -2,7 +2,9 @@
 
 var mainDomain = 'http://localhost:3000/api';
 var products = [];
-var cart_id = "59e7954907f18b0870c4732b"; //test cart
+//var cart_id = "59e7954907f18b0870c4732b"; //test cart
+var cart_id = "";
+var user_id = "";
 
 //AjaxRequest contructor
 //- method = "GET", "POST", "PUT", "DELETE"
@@ -28,10 +30,11 @@ function AjaxRequest(method, url, data, onSuccess) {
 
 //create a single product's markeup with name, price, and tag(s)
 var getProductMarkup = (product) => {
+	var productPrice = parseFloat(product.price).toFixed(2);
 	return '<div>'
 			+ `<p class="product-name">${product.name}<br/>`
 			+ `<span class="product-tags">${product.tags}</span></p>`
-			+ `<p class="product-price">$${product.price}</p>`
+			+ `<p class="product-price">${productPrice}</p>`
 			+ `<button class="add-product" value="${product._id}">Add to Cart</button>`
 			+ '</div>';
 } // end of getProductMarkup()
@@ -43,13 +46,15 @@ var getCartProductMarkup = (product,qty) => {
 	// 		+ `<span class="name">${products[key]}</span>`
 	// 		+ `<input type='text' value='1' name='${key}'/>`
 	// 		+ '</p>';
-	var cartProductTotal = parseFloat(product.price) * qty;
+	var cartProductPrice = parseFloat(product.price).toFixed(2);
+	var cartProductTotal = (cartProductPrice * qty).toFixed(2);
+
 	return '<div class="cart-product">'
 			+ '<span class="remove">×</span>'
 			+ `<div class="cart-product-details">`
 			+ `<span class="name">${product.name}</span> `
 			+ `<div class="price">`
-			+ `<span class="cart-product-price">${product.price}</span> × `
+			+ `<span class="cart-product-price">${cartProductPrice}</span> × `
 			+ `<input type='text' value='${qty}' name='${product._id}'/>`
 			+ ` = `
 			+ `<span class="cart-product-total">${cartProductTotal}</span>`
@@ -62,37 +67,41 @@ var getCartProductMarkup = (product,qty) => {
 
 
 var addProductToCart = (product,qty) => {
-		var key = product._id;
-		var qtyInputRef = $(`#edit-cart input[name="${key}"]`);
-		var existsInCart = qtyInputRef.val();
-		console.log(existsInCart);
-		//checks if product exists in the cart.
-		if(existsInCart) { //If product exists in the cart, add 1 to the existing quantity
-			qtyInputRef.val(parseInt(existsInCart)+1);
-		} // end of if (existsInCart)
-		else { //else product does not exist in the cart, add a new product entry into the cart
-			//create product entry in the cart
-			$('#edit-cart').append(getCartProductMarkup(product,qty));
+	var key = product._id;
+	var qtyInputRef = $(`#edit-cart input[name="${key}"]`);
+	var existsInCart = qtyInputRef.val();
+	console.log(existsInCart);
+	//checks if product exists in the cart.
+	if(existsInCart) { //If product exists in the cart, add 1 to the existing quantity
+		qtyInputRef.val(parseInt(existsInCart)+1);
+	} // end of if (existsInCart)
+	else { //else product does not exist in the cart, add a new product entry into the cart
+		//create product entry in the cart
+		$('#edit-cart').append(getCartProductMarkup(product,qty));
 
-			//adds a click event to recently added product in the cart.
-			//when the [x] is clicked, the product is removed
-			$(`#edit-cart span.remove:last`).on('click',function() {
-				$(this).closest('div').remove();
-			});
+		//adds a click event to recently added product in the cart.
+		//when the [x] is clicked, the product is removed
+		$(`#edit-cart span.remove:last`).on('click',function() {
+			$(this).closest('div').remove();
+			calculateOrderTotals();
+		});
 
-			//get references to the price and total price of the recently added
-			//product into the cart
-			var productTotalRef = $(`#edit-cart span.cart-product-total:last`);
-			var productPriceRef = $(`#edit-cart span.cart-product-price:last`);
+		//get references to the price and total price of the recently added
+		//product into the cart
+		var productTotalRef = $(`#edit-cart span.cart-product-total:last`);
+		var productPriceRef = $(`#edit-cart span.cart-product-price:last`);
 
-			//calculates total product price. product's price * qty
-			$(`#edit-cart input[name="${key}"]`).on('input propertychange paste',function(e) {
-				e.preventDefault();
-				qtyInputRef = $(`#edit-cart input[name="${key}"]`);
-				productTotalRef.text(parseInt(qtyInputRef.val()) *parseFloat(productPriceRef.text()));
-			});
+		//calculates total product price. product's price * qty
+		$(`#edit-cart input[name="${key}"]`).on('input propertychange paste',function(e) {
+			e.preventDefault();
+			qtyInputRef = $(`#edit-cart input[name="${key}"]`);
+			productTotalRef.text((parseInt(qtyInputRef.val()) *parseFloat(productPriceRef.text())).toFixed(2));
+			calculateOrderTotals();
+		});
 
-		}// end of else (existsInCart)
+
+	}// end of else (existsInCart)
+	calculateOrderTotals();
 }
 
 //called by successful AjaxRequest. handles population of DOM element #select-products.
@@ -115,33 +124,27 @@ var initializeProducts = (resp) => {
 			addProductToCart(child,1);
 
 		}); //end of click event for add product to cart
-		// //add click event to the current product's button.
-		// //used to add product to the shopping cart
-		// $(`button[value="${child_id}"]`).on('click',function(e) {
-		// 	e.preventDefault();
-		// 	var key = $(this).val();
-		// 	var qtyInputRef = $(`#edit-cart input[name="${key}"]`);
-		// 	var existsInCart = qtyInputRef.val();
-		//
-		// 	//checks if product exists in the cart.
-		// 	if(existsInCart) { //If product exists in the cart, add 1 to the existing quantity
-		// 		qtyInputRef.val(parseInt(existsInCart)+1);
-		// 	} // end of if (existsInCart)
-		// 	else { //else product does not exist in the cart, add a new product entry into the cart
-		// 		//create product entry in the cart
-		// 		$('#edit-cart').append(getCartProductMarkup(child));
-		//
-		// 		//adds a click event to recently added product in the cart.
-		// 		//when the [x] is clicked, the product is removed
-		// 		$(`#edit-cart span.remove:last`).on('click',function() {
-		// 			$(this).closest('p').remove();
-		// 		});
-		// 	}// end of else (existsInCart)
-		//
-		// }); //end of click event for add product to cart
 
 	}); // end of forEach
+
 } // end of initializeProducts()
+
+var calculateOrderTotals = () => {
+
+	var subTotal = 0.0;
+	var tax = 0.0;
+	var orderTotal = 0.0;
+
+	$('#edit-cart span.cart-product-total').each(function() {
+		subTotal += parseFloat($(this).text());
+	});
+	tax = subTotal * 0.0825;
+	orderTotal = subTotal + tax;
+	$('#sub-total-value').text(subTotal.toFixed(2));
+
+	$('#tax-total-value').text(tax.toFixed(2));
+	$('#order-total-value').text(orderTotal.toFixed(2));
+}
 
 //called by successful AjaxRequest. handles population of DOM element #select-category.
 var initializeCategories  = (resp) => {
@@ -161,28 +164,34 @@ var initializeCategories  = (resp) => {
 }// end of initializeCategories()
 
 var addCart = (resp) => {
+	console.log("addCart");
 	console.log(resp);
 } // end of addCart()
 
-var initializeExistingCart = (resp) => {
+var attemptCartRetrieval = (resp) => {
+	console.log("attemptCartRetrieval");
 	console.log(resp);
-
+	cart_id = resp._id;
 	resp.items.forEach((product, index) => {
 		addProductToCart(product,resp.itemsQty[index]);
 	});
-} // end of addCart()
+
+	calculateOrderTotals();
+} // end of attemptCartRetrieval()
 
 //main script starting point. executes when document is ready
 $(() => {
+	user_id = $('#user_id').text();
 	console.log('Go forth and code!');
+	console.log(user_id);
 	//populate page with products
 	(new AjaxRequest('GET', `${mainDomain}/items`, null, initializeProducts)).execute();
 
 	//populate page with categories
 	(new AjaxRequest('GET', `${mainDomain}/items/tags`, null, initializeCategories)).execute();
 
-	//populate cart if found a users' cart in the DB
-	(new AjaxRequest('GET', `${mainDomain}/carts/${cart_id}`, null, initializeExistingCart)).execute();
+	//attempt to get an existing cart for the user logged in
+	(new AjaxRequest('GET', `${mainDomain}/carts/open/${user_id}`, null, attemptCartRetrieval)).execute();
 
 	//adds event to the #submit-cart button to complete a cart order.
 	$('#submit-cart').on('click',function(e){
@@ -196,10 +205,11 @@ $(() => {
 		});
 
 		var newCart = {
+		 	user: user_id,
 			items : products,
 			itemsQty : productsQty
 		};
-		if(cart_id.length == 0){
+		if(cart_id.length === 0){
 			(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, addCart)).execute();
 		}
 		else {
