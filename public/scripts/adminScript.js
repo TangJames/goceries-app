@@ -1,17 +1,51 @@
+
+function showByCategory(tags) {
+    $.ajax({
+        method: 'GET',
+        url: `/api/items/tags/${tags}`,
+        dataType: 'json',
+        success: onShowByCategorySuccess
+    });
+}
+
+function onShowByCategorySuccess(data) {
+    data.forEach((value) => {
+        $('.itemList').append("<p>Object ID: " + value._id + "</p>");
+        $('.itemList').append("<p>Name: " + value.name + "</p>");
+        $('.itemList').append("<p>Price: $" + value.price + "</p>");
+        $('.itemList').append("<p>Tags: " + value.tags + "</p>");
+        $('.itemList').append("<hr>");
+    });
+}
+
+function run() {
+    var blah = document.getElementById("selectCategory");
+    var selected = blah.options[blah.selectedIndex].value;
+    $('.itemList p').empty();
+    $('hr').remove();
+    showByCategory(selected);
+}
+
+
+
+
+// GET READY FUNCTION
+
+
 $(function() {
 
     getItems();
     function getItems() {
         $.ajax({
             method: 'GET',
-            url: 'http://localhost:3000/api/items',
+            url: '/api/items',
             dataType: 'json',
             success: onGetItemSuccess,
             // error: onError
         });
     }
     function onGetItemSuccess(data) {
-        data.forEach((value) => {
+        data.forEach(function(value) {
             $('.itemList').append("<p>Object ID: " + value._id + "</p>");
             $('.itemList').append("<p>Name: " + value.name + "</p>");
             $('.itemList').append("<p>Price: $" + value.price + "</p>");
@@ -27,7 +61,7 @@ $(function() {
     function postItems() {
         $.ajax({
             method: 'POST',
-            url: 'http://localhost:3000/api/items',
+            url: '/api/items',
             dataType: 'json',
             data: $('#postData').serialize(),
             success: onPostItemSuccess
@@ -48,7 +82,7 @@ $(function() {
     function deleteItemById(id) {
         $.ajax({
             method: 'DELETE',
-            url: `http://localhost:3000/api/items/${id}`,
+            url: `/api/items/${id}`,
             dataType: 'json',
             success: onDeleteSuccess
         });
@@ -70,7 +104,7 @@ $(function() {
     function updateItemById(options) {
         $.ajax({
             method: 'PUT',
-            url: `http://localhost:3000/api/items/${options.id}`,
+            url: `/api/items/${options.id}`,
             dataType: 'json',
             data: options,
             success: onUpdateSuccess
@@ -100,10 +134,6 @@ $(function() {
 
 
 
-
-
-
-
     // Util Function DRY
     function removeItemsThenRefresh() {
         $('.itemList p').empty();
@@ -122,8 +152,6 @@ $(function() {
        }
 
     });
-
-
 
 
 
