@@ -39,10 +39,9 @@ router.route('/api/carts/:id')
     .delete(itemRoute.check_user, cartRoute.deleteCart);
 
 router.route('/api/carts/open/:user_id')
-    .get(itemRoute.check_user, cartRoute.selectOpenCartByUserId)
-	router.route('/api/carts/closed/:user_id')
-	    .get(itemRoute.check_user, cartRoute.selectClosedCartsByUserId)
-
+    .get(itemRoute.check_user, cartRoute.selectOpenCartByUserId);
+router.route('/api/carts/closed/:user_id')
+	.get(itemRoute.check_user, cartRoute.selectClosedCartsByUserId);
 
 
 // Admin Page Security Routes
@@ -50,8 +49,10 @@ router.route('/api/carts/open/:user_id')
 router.route('/sessions')
     .post(accountRoute.newLoginSession);
 
-router.route('/users')
-    .post(accountRoute.registerNewUser);
+// Disallow Creating an admit account, uncomment to create an account
+
+// router.route('/users')
+//     .post(accountRoute.registerNewUser);
 
 router.route('/admin/panel')
     .get(accountRoute.getProfilePage);
@@ -79,19 +80,6 @@ router.route('/home/login')
 
 router.route('/home/logout')
     .get(homeRoute.getLogoutPage);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

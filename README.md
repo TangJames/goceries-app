@@ -70,3 +70,8 @@ This software uses code from several open source packages.
 - [Bcrypt](https://www.npmjs.com/package/bcrypt)
 - [Express](https://www.npmjs.com/package/express)
 - [Lodash](https://www.npmjs.com/package/lodash)
+
+## Contributors
+- <a href="https://github.com/mattray0295">Matt Ray</a>
+- <a href="https://linkedin.com/in/jaylara1">Jay Lara</a>
+- <a href="https://github.com/tangjames">James Tang</a>

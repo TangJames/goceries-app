@@ -60,11 +60,11 @@ function deleteCart(req, res) {
 }//end of deleteCart()
 
 module.exports = {
-	selectAllCarts : selectAllCarts,
-	selectCart : selectCart,
-	createCart : createCart,
-	updateCart : updateCart,
-	deleteCart : deleteCart,
-	selectOpenCartByUserId: selectOpenCartByUserId,
-	selectClosedCartsByUserId: selectClosedCartsByUserId
+	selectAllCarts,
+	selectCart,
+	createCart,
+	updateCart,
+	deleteCart,
+	selectOpenCartByUserId,
+	selectClosedCartsByUserId
 };
