@@ -6,7 +6,7 @@ const session = require('express-session');
 
 // app setup
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -27,5 +27,5 @@ app.use('/', index);
 
 //start server
 app.listen(port, function() {
-  console.log('Server is listening on port 3000!');
+  console.log(`Server is listening on port ${port}`);
 });
