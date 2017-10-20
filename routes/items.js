@@ -66,18 +66,12 @@ function deleteItem(req, res) {
 }//end of deleteItem()
 
 
-
-
 function check_user(req, res, next) {
     if (req.session.userId === undefined) {
         return res.json('You do not have permission to access this url.');
     }
     next();
 }
-
-
-
-
 
 
 //exporting common, simple CRUD methods for use by other routes

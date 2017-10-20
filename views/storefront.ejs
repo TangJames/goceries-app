@@ -57,13 +57,9 @@
 	</div>
 	</footer>
     <% } else { %>
-		<header>
-			<h1>Go-ceries</h1>
-
-	        <h2>You're not logged in. </h2>
-	        <h2> [ <a href="/home/login">Log In</a>] </h2>
-		</header>
-		<main>
+		<script>
+        window.location.href = "/home/login";
+        </script>
     <% } %>
 </body>
 </html>
