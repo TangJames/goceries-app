@@ -210,24 +210,17 @@ $(() => {
 		var cart_products = $('#edit-cart input').serializeArray();
 		var products = [];
 		var productsQty = [];
-		if(cart_products.length !== 0) {
 			cart_products.forEach((product) => {
 				products.push(product.name);
 				productsQty.push(product.value);
 			});
-		}
-		else {
-			products = null;
-			productsQty = null;
-		}
+
 		var newCart = {
 			user: user_id,
 			items : products,
 			itemsQty : productsQty
 		};
 
-		console.log(cart_products);
-		console.log(`${cart_id}`);
 		if(cart_id.length === 0)
 		(new AjaxRequest('POST', `${mainDomain}/carts`, newCart, addCart)).execute();
 		else
