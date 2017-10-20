@@ -16,10 +16,16 @@ function selectItemsByTag(req, res) {
 
 //Selects all items from specified DB.Item
 function selectAllItems(req, res) {
-	DB.Item.find((err, items) => { // send all items as JSON response
+	DB.Item.find().collation({locale:'en',strength: 2}).sort({name:1})
+		.exec((err, items) => { // send all items as JSON response
 		if (err) { return console.log("index error: " + err); }
 		res.json(items);
 	});
+
+	// DB.Item.find((err, items) => { // send all items as JSON response
+	// 	if (err) { return console.log("index error: " + err); }
+	// 	res.json(items);
+	// });
 }//end of selectAllItems()
 
 //Selects all item tags from specified DB.Item
