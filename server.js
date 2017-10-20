@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   saveUninitialized: true,
   resave: true,
-  secret: 'thisAppRocksMySocks',
+  secret: 'thisAppRulesDoesntIt',
   cookie: { maxAge: 30 * 60 * 1000 } // 30 minute cookie lifespan (in milliseconds)
 }));
 
@@ -25,17 +25,7 @@ const index = require('./routes/index.js');
 app.use('/', index);
 
 
-
-
-
-
-
-
-
-
-
-
 //start server
 app.listen(port, function() {
-  console.log('Server is listening on port 3000!');
+  console.log(`Server is listening on port ${port}`);
 });

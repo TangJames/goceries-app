@@ -1,6 +1,7 @@
+
 /* GLOBAL VARIABLES UP HERE */
 
-var mainDomain = 'http://localhost:3000/api';
+var mainDomain = '/api';
 var products = [];
 var cart_id = "";
 var user_id = "";

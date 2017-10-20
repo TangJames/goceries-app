@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Home Page</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/styles/adminHomeStyle.css">
 </head>
 <body>
@@ -54,16 +54,21 @@
             <select name="" id="selectCategory" onchange="run();">
                 <option disabled selected>Categories</option>
                 <option value="people">Person</option>
-                <option value="food">Food</option>
-                <option value="drink">Drink</option>
+                <option value="meals 2 go">Meals 2 Go</option>
+                <option value="electronics">Electronics</option>
+                <option value="medicine">Medicine</option>
+                <option value="software">Software</option>
+                <option value="hygiene">Hygiene</option>
+
             </select>
             <div class="itemList"></div>
         </div>
     </div>
 
     <% } else { %>
-        You're not logged in. </h2>
-        <a href="/admin/login">Log in</a>
+        <script>
+        window.location.href = "/admin/login";
+        </script>
     <% } %>
 
 
